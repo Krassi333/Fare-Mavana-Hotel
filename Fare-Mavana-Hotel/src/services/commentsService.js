@@ -12,3 +12,14 @@ export const create = async (gameId, username, text) => {
     return newComment;
 }
 
+export const getGameComments = async (gameId) => {
+    const query= new URLSearchParams({
+        where:`gameId="${gameId}"`
+    })
+    const response = await fetch(`${baseUrl}`, {
+        method: 'GET',
+    });
+
+    const allComments=await response.json();
+    return Object.values(allComments).filter(comment => comment.gameId === gameId);
+}
