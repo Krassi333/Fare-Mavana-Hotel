@@ -1,6 +1,8 @@
+import { Route, Routes, useNavigate } from 'react-router-dom'
 
-import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import { AuthProvider } from './context/authContext'
+
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
@@ -9,20 +11,16 @@ import AdminPanel from './components/Login/AdminPanel/AdminPanel'
 import AddRoom from './components/Add room/AddRoom'
 import RoomDetails from './components/RoomDetails/RoomDetails'
 import Login from './components/Login/Login'
-import { useState } from 'react'
-import AuthContext from './context/authContext'
+import Register from './components/Register/Register'
+import Logout from './components/Logout/logout'
 
 function App() {
-  const [auth, setAuth] = useState({});
-
-  const loginSubmitHandler = (values) => {
-    console.log(values);
-  }
+ 
 
   return (
-    <>
+    <div className="site">
 
-      <AuthContext.Provider value={loginSubmitHandler}>
+      <AuthProvider >
 
         <Header sticky="top" />
         <Routes>
@@ -31,10 +29,13 @@ function App() {
           <Route path="/roomsCatalog" element={<TypeChoise />} />
           <Route path="/rooms/:id" element={<RoomDetails />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<Logout />} />
+
         </Routes>
         <Footer />
-      </AuthContext.Provider>
-    </>
+      </AuthProvider>
+    </div>
 
   )
 }
