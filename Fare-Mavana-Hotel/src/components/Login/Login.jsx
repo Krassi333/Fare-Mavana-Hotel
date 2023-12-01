@@ -5,14 +5,14 @@ import AuthContext from "../../context/authContext";
 
 export default function Login() {
 
-    const loginSubmitHandler=useContext(AuthContext);
+    const {loginSubmitHandler}=useContext(AuthContext);
 
 const LoginFormKeys={
-    Username:'username',
+    Email:'email',
     Password:'password'
 }
     const { formValues, onChange, onSubmit } = useForm(loginSubmitHandler ,{
-        [LoginFormKeys.Username]: '',
+        [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: ''
     });
 
@@ -25,13 +25,13 @@ const LoginFormKeys={
                 <div>
                     <h2>Login</h2>
                     <div className="title">
-                        <label htmlFor="username">Username:</label>
+                        <label htmlFor="email">Email:</label>
                         <input
-                            name={LoginFormKeys.Username}
+                            name={LoginFormKeys.Email}
                             id="username"
                             type="text"
                             onChange={onChange}
-                            value={formValues[LoginFormKeys.Username]}
+                            value={formValues[LoginFormKeys.Email]}
                         />
                     </div>
 
