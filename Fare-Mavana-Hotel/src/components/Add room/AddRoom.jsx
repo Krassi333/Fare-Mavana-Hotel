@@ -2,17 +2,21 @@
 import styles from './AddRoom.module.css';
 import { useNavigate } from 'react-router-dom';
 import * as roomServices from '../../services/roomService';
+import { useContext } from 'react';
+import AuthContext from '../../context/authContext';
 
 export default function AddRoom() {
     const navigate = useNavigate();
+    const { token } = useContext(AuthContext);
 
     const addRoomHandler = async (e) => {
+
         e.preventDefault();
         const roomData = Object.fromEntries(new FormData(e.currentTarget));
-        console.log(roomData);
+
 
         try {
-            const result = await roomServices.create(roomData);
+            const result = await roomServices.create(roomData, token);
             navigate('/');
         } catch (err) {
             //TODO err notification 
@@ -43,9 +47,9 @@ export default function AddRoom() {
                             <input name="floor" id="floor" type="number" />
                         </div>
 
-                        <div className="sapce">
-                            <label htmlFor="sapce">Total space:</label>
-                            <input name="sapce" id="sapce" type="number" />
+                        <div className="space">
+                            <label htmlFor="space">Total space:</label>
+                            <input name="space" id="space" type="number" />
                         </div>
 
 
