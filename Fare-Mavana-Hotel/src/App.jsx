@@ -13,6 +13,7 @@ import RoomDetails from './components/RoomDetails/RoomDetails'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import Logout from './components/Logout/logout'
+import EditRoom from './components/EditRoom/EditRoom'
 
 function App() {
  
@@ -31,6 +32,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/rooms/:id/edit" element={<EditRoom />} />
+
 
         </Routes>
         <Footer />
