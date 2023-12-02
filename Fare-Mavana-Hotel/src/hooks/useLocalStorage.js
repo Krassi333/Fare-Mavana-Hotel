@@ -22,7 +22,7 @@ export default function useLocalStorage(key, defaultValue) {
 
         }
 
-        localStorage.setItem(key, serializestatedValue);
+        localStorage.setItem(key, serializedValue);
     }
 
     return [
