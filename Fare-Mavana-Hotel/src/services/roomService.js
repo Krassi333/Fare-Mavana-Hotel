@@ -27,4 +27,16 @@ console.log(responce);
     const result = await responce.json();
 
     return result;
+export const deleteRoom = async (roomId, token) => {
+    const responce = await fetch(`${baseUrl}/rooms/${roomId}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json',
+            'X-Authorization': token
+        }
+    });
+
+    const result = await responce.json();
+    return result;
+
 }
