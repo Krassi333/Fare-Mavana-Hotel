@@ -29,6 +29,25 @@ export const getOne = async (roomId) => {
     const result = await responce.json();
 
     return result;
+}
+
+export const edit=async(roomId, newData, token) =>{
+
+    console.log('user token ' + token);
+    const response = await fetch(`${baseUrl}/rooms/${roomId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'X-Authorization': token
+        },
+        body: JSON.stringify(newData)
+    });
+
+    const result = await response.json();
+
+    return result;
+}
+
 export const deleteRoom = async (roomId, token) => {
     const responce = await fetch(`${baseUrl}/rooms/${roomId}`, {
         method: 'DELETE',
