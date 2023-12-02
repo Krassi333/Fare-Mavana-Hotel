@@ -15,16 +15,31 @@
     font-size: 36px;
 }
 
-.buttons>button {
+.buttons>button,
+.editBtn {
     margin-right: 1em;
     padding:0.5em;
     font-size:16px;
     line-height: 2;
     border-radius: 1em;
     background-color: aqua;
+
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
 }
 
-.buttons>button:hover {
+.buttons>button:hover ,
+.editBtn:hover{
     background-color: blue;
     color:white;
 }
