@@ -16,10 +16,10 @@ export const AuthProvider = ({
 
     const loginSubmitHandler = async (values) => {
         //console.log(values.password);
-        const result = await authService.login(values.email, values.password);
-        localStorage.setItem('accessToken',result.accessToken);
+        const responce = await authService.login(values.email, values.password);
+        localStorage.setItem('accessToken',responce.accessToken);
 
-        setAuth(result);
+        setAuth(responce);
         navigate('/');
     }
 
@@ -36,8 +36,8 @@ export const AuthProvider = ({
             values.username,
             values.password);
 
-        localStorage.setItem('accessToken',result.accessToken);
-        setAuth(result);
+        localStorage.setItem('accessToken',responce.accessToken);
+        setAuth(responce);
         navigate('/');
     }
 
