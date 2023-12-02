@@ -1,7 +1,5 @@
 .roomContainer {
-    background-image: url("../../assets/abstract-watercolor-pastel-background_87374-139.avif");
-    background-repeat: no-repeat;
-    background-size: 100% auto;
+    
     padding: 1em;
     display: flex;
     gap: 2em;
