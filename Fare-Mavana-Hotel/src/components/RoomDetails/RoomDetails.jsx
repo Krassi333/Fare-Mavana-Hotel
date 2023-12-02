@@ -1,48 +1,62 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './RoomDetails.module.css';
-import * as gameServices from '../../services/roomService';
+import * as roomServices from '../../services/roomService';
 import * as commentServices from '../../services/commentsService'
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import AuthContext from '../../context/authContext';
 
 export default function RoomDetails() {
-    let gameId = useParams();
-    gameId = gameId.id;
-    const [gameData, setGameData] = useState({});
-    const [comments,setComments]=useState([]);
+    const { userId, token, username } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    let roomId = useParams();
+    roomId = roomId.id;
+    const [roomData, setRoomData] = useState({});
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        gameServices.getOne(gameId)
+        roomServices.getOne(roomId)
             .then(result => {
-              //  console.log(result);
-                setGameData(result)
+                //  console.log(result);
+                setRoomData(result)
             });
 
-            commentServices.getGameComments(gameId)
+        commentServices.getRoomComments(roomId)
             .then(result => {
-                //console.log(result);
-                setComments(result)});
-    }, [gameId]);
+                console.log(result);
+                setComments(result)
+            });
+    }, [roomId]);
 
     const addCommentHabdler = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
+        const newComment = await commentServices.create(roomId, username, token, formData.get('comment'));
+        setComments(state => [...state, newComment]);
+    }
 
-       const newComment= await commentServices.create(gameId, formData.get('username'), formData.get('comment'));
-       
-       setComments(state => [...state,newComment]);
+    const deleteHandler = async () => {
+        const responce = await roomServices.deleteRoom(roomId, token);
+        navigate('/roomsCatalog');
+
     }
 
     return (
 
         <div className={styles.detailsContainer}>
             <div className={styles.detailsHeader}>
-                <h1>{gameData.title}</h1>
+                <h1>{roomData.title}</h1>
                 <div className={styles.buttons}>
                     <button>Suites</button>
                     <button>Rooms</button>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    {roomData._ownerId === userId && (
+                        <>
+                            <Link to={`/rooms/${roomId}/edit`} className={styles.editBtn}>Edit</Link>
+                            <button onClick={deleteHandler}>Delete</button>
+                        </>
+                    )}
+
                 </div>
             </div>
 
@@ -50,11 +64,11 @@ export default function RoomDetails() {
                 <div className={styles.roomInfo}>
                     <div className={styles.row}>
                         <p>Total Flat Space</p>
-                        <p><b>{gameData.space} m2</b></p>
+                        <p><b>{roomData.space} m2</b></p>
                     </div>
                     <div className={styles.row}>
                         <p>Floor number</p>
-                        <p><b>{gameData.floor}</b></p>
+                        <p><b>{roomData.floor}</b></p>
                     </div>
                     <div className={styles.row}>
                         <p>Parking Available</p>
@@ -67,34 +81,34 @@ export default function RoomDetails() {
                 </div>
 
                 <div className={styles.image}>
-                    <img src={gameData.imageUrl} alt="" />
+                    <img src={roomData.imageUrl} alt="" />
                 </div>
 
                 <div className={styles.details}>
                     <h2>All Info About Apartment</h2>
-                    <p>{gameData.description}</p>
+                    <p>{roomData.description}</p>
                 </div>
             </div>
 
             <div className="details-comments">
-                    <h2>Comments:</h2>
-                    <ul>
-                        {comments.map(({ _id, username, text }) => (
-                            <li key={_id} className="comment">
-                                <p>{username}: {text}</p>
-                            </li>
-                        ))}
-                    </ul>
+                <h2>Comments:</h2>
+                <ul>
+                    {comments.map(({ _id, text, username }) => (
+                        <li key={_id} className="comment">
+                            <p>{username}: {text}</p>
+                        </li>
+                    ))}
+                </ul>
 
-                    {comments.length === 0 && (
-                        <p className="no-comment">No comments.</p>
-                    )}
-                </div>
+                {comments.length === 0 && (
+                    <p className="no-comment">No comments yet.</p>
+                )}
+            </div>
 
             <article className={styles.addComment} >
                 <label htmlFor='form'>Add new comment:</label>
                 <form className="form" onSubmit={addCommentHabdler}>
-                    <input type="text" name="username"/>
+
                     <textarea name="comment" placeholder='You can write your comment here ...' cols="30" rows="10"></textarea>
                     <input type="submit" className={styles.btn} value='Add comment' />
                 </form>
