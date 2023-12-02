@@ -1,10 +1,12 @@
-const baseUrl = 'http://localhost:3030/jsonstore'
+const baseUrl = 'http://localhost:3030/data'
 
-export const create = async (roomData) => {
+
+export const create = async (roomData, token) => {
     const response = await fetch(`${baseUrl}/rooms`, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'X-Authorization': token
         },
         body: JSON.stringify(roomData)
     });
@@ -21,9 +23,9 @@ export const getAll = async () => {
     return Object.values(result);
 }
 
-export const getOne = async (gameId) => {
-    const responce =await fetch(`${baseUrl}/rooms/${gameId}`, { method: 'GET' });
-console.log(responce);
+export const getOne = async (roomId) => {
+    const responce = await fetch(`${baseUrl}/rooms/${roomId}`, { method: 'GET' });
+
     const result = await responce.json();
 
     return result;
