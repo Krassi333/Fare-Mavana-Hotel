@@ -1,25 +1,28 @@
-const baseUrl = 'http://localhost:3030/jsonstore/comments';
+const baseUrl = 'http://localhost:3030/data/comments';
 
-export const create = async (gameId, username, text) => {
+export const create = async (roomId, username, token, text) => {
     const responce = await fetch(baseUrl, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'X-Authorization': token
         },
-        body: JSON.stringify({ gameId, username, text })
+        body: JSON.stringify({ roomId, username, text })
     });
- const newComment=await responce.json();
+    const newComment = await responce.json();
+    console.log(newComment);
     return newComment;
 }
 
-export const getGameComments = async (gameId) => {
-    const query= new URLSearchParams({
-        where:`gameId="${gameId}"`
+export const getRoomComments = async (roomId) => {
+    const query = new URLSearchParams({
+        where: `roomId="${roomId}"`
     })
-    const response = await fetch(`${baseUrl}`, {
+    const response = await fetch(`${baseUrl}?${query}`, {
         method: 'GET',
     });
 
-    const allComments=await response.json();
-    return Object.values(allComments).filter(comment => comment.gameId === gameId);
+    const allComments = await response.json();
+    //console.log(allComments[0].owner.username);
+    return allComments;
 }
