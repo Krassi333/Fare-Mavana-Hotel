@@ -24,3 +24,24 @@ export const register = async (email, username, password) => {
     return await response.json();
 
 }
+
+export const logout = async (token) => {
+
+    console.log('token from servise '+ token);
+    const response = await fetch(`${baseUrl}/logout`, {
+        method: 'GET',
+        headers: {
+            'X-Authorization': `${token}`
+        }
+    });
+
+    if (response.status == 204) {
+        return {}
+    }
+
+    if (!response.ok) {
+        throw response.json();
+    }
+
+    return response.json();
+}
