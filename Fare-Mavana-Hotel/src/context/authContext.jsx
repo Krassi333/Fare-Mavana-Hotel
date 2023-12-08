@@ -20,7 +20,7 @@ export const AuthProvider = ({
         localStorage.setItem('accessToken',responce.accessToken);
 
         setAuth(responce);
-        navigate('/');
+        navigate(-1);
     }
 
     const logoutHandler = async () => {
