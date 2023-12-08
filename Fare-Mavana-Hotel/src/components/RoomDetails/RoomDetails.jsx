@@ -48,12 +48,12 @@ export default function RoomDetails() {
             <div className={styles.detailsHeader}>
                 <h1>{roomData.title}</h1>
                 <div className={styles.buttons}>
-                    <button>Suites</button>
-                    <button>Rooms</button>
+
+                    <Link to="/roomsCatalog" className={styles.editBtn}>Back to Rooms List</Link>
                     {roomData._ownerId === userId && (
                         <>
-                            <Link to={`/rooms/${roomId}/edit`} className={styles.editBtn}>Edit</Link>
-                            <button onClick={deleteHandler}>Delete</button>
+                            <Link to={`/rooms/${roomId}/edit`} className={styles.editBtn}>Edit Room Info</Link>
+                            <button onClick={deleteHandler}>Delete Room</button>
                         </>
                     )}
 
@@ -64,7 +64,7 @@ export default function RoomDetails() {
                 <div className={styles.roomInfo}>
                     <div className={styles.row}>
                         <p>Total Flat Space</p>
-                        <p><b>{roomData.space} m2</b></p>
+                        <p><b>{roomData.space} sqm</b></p>
                     </div>
                     <div className={styles.row}>
                         <p>Floor number</p>
@@ -90,12 +90,12 @@ export default function RoomDetails() {
                 </div>
             </div>
 
-            <div className="details-comments">
+            <div className={styles.commentsSection}>
                 <h2>Comments:</h2>
                 <ul>
                     {comments.map(({ _id, text, username }) => (
-                        <li key={_id} className="comment">
-                            <p>{username}: {text}</p>
+                        <li key={_id} className={styles.comment}>
+                            <p><b>{username}</b>: {text}</p>
                         </li>
                     ))}
                 </ul>
@@ -103,16 +103,19 @@ export default function RoomDetails() {
                 {comments.length === 0 && (
                     <p className="no-comment">No comments yet.</p>
                 )}
+
+                <article className={styles.addComment} >
+
+                    <form className="form" onSubmit={addCommentHabdler}>
+                        <label htmlFor='textarea'>Add Your Comment Here:</label>
+                        <textarea name="comment" placeholder='You can write your comment here ...' cols="30" rows="10"></textarea>
+                        <input type="submit" className={styles.btn} value='Add comment' />
+                    </form>
+                </article>
+
             </div>
 
-            <article className={styles.addComment} >
-                <label htmlFor='form'>Add new comment:</label>
-                <form className="form" onSubmit={addCommentHabdler}>
 
-                    <textarea name="comment" placeholder='You can write your comment here ...' cols="30" rows="10"></textarea>
-                    <input type="submit" className={styles.btn} value='Add comment' />
-                </form>
-            </article>
 
         </div>
 
