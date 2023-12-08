@@ -13,7 +13,7 @@ export default function Header() {
                 <nav>
                     <ul>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/roomsCatalog">Rooms and Suites</Link></li>
+                        <li><Link to="/roomsCatalog">Rooms</Link></li>
                         <li><Link to="/restaurant">Ambrozia Reataurant</Link></li>
                         {isAuthenticated && (
                             <>
