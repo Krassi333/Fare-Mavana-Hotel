@@ -15,6 +15,10 @@
     font-size: 36px;
 }
 
+.image >img{
+   max-width: 30vw;
+}
+
 .buttons>button,
 .editBtn {
     margin-right: 1em;
@@ -59,6 +63,7 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
     padding: 35px 30px;
     border-radius:10px; 
+    flex:0 1 20vw;
 }
 
 .row {
@@ -74,10 +79,26 @@
     color:black;
 }
 .details{
-    max-width: 500px;
+    flex:0 1 20vw;
+
 }
 
 .details>h2 {
     font-size: 26px;
     padding-bottom: 1.5em;
+}
+
+.commentsSection {
+    margin: 4em;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+    padding: 35px 30px;
+    border-radius:10px; 
+}
+
+.addComment>form>label{
+    padding:1em;
+}
+
+.comment{
+    list-style-type: none;
 }
