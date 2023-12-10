@@ -49,7 +49,7 @@ export default function Footer() {
                                         data-placement="top"
                                         title="Facebook"
                                     >
-                                        <span className="ion-logo-facebook" />
+                                        <i className="fa-brands fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li className="ftco-animate">

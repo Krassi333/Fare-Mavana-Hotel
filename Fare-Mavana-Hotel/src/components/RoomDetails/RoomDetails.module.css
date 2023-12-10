@@ -43,7 +43,8 @@
 }
 
 .buttons>button:hover ,
-.editBtn:hover{
+.editBtn:hover,
+.btn:hover{
     background-color: blue;
     color:white;
 }
@@ -102,3 +103,4 @@
 .comment{
     list-style-type: none;
 }
+

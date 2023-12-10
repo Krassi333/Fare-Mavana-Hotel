@@ -218,5 +218,7 @@ footer {
 
     /* RoomsList*/
 
-    
+    .error{
+      color:red;
+    }
     

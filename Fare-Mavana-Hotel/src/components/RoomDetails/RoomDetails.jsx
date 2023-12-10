@@ -4,6 +4,7 @@ import * as roomServices from '../../services/roomService';
 import * as commentServices from '../../services/commentsService'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import AuthContext from '../../context/authContext';
+import { DeleteModal } from '../DeleteModal/DeleteModal';
 
 export default function RoomDetails() {
     const { userId, token, username } = useContext(AuthContext);
@@ -13,6 +14,8 @@ export default function RoomDetails() {
     roomId = roomId.id;
     const [roomData, setRoomData] = useState({});
     const [comments, setComments] = useState([]);
+    const [isDeleteModal, setIsDeleteModal] = useState(false);
+    
 
     useEffect(() => {
         roomServices.getOne(roomId)
@@ -42,6 +45,26 @@ export default function RoomDetails() {
 
     }
 
+    const handleDelete = () => {
+        setIsDeleteModal(true);
+    }
+
+    const handleCancelDelete = () => {
+        setIsDeleteModal(false);
+        
+    }
+
+    const confirmDeleteTrip = () => {
+        try {
+            const responce =  roomServices.deleteRoom(roomId, token);
+            navigate('/roomsCatalog');
+            setIsDeleteModal(false);
+           
+        } catch (error) {
+            console.log('Error deleting trip', error);
+        }
+    }
+
     return (
 
         <div className={styles.detailsContainer}>
@@ -53,7 +76,7 @@ export default function RoomDetails() {
                     {roomData._ownerId === userId && (
                         <>
                             <Link to={`/rooms/${roomId}/edit`} className={styles.editBtn}>Edit Room Info</Link>
-                            <button onClick={deleteHandler}>Delete Room</button>
+                            <button onClick={handleDelete}>Delete Room</button>
                         </>
                     )}
 
@@ -95,7 +118,7 @@ export default function RoomDetails() {
                 <ul>
                     {comments.map(({ _id, text, username }) => (
                         <li key={_id} className={styles.comment}>
-                            <p><b>{username}</b>: {text}</p>
+                            <p><b>{username}</b> :   {text}</p>
                         </li>
                     ))}
                 </ul>
@@ -107,7 +130,7 @@ export default function RoomDetails() {
                 <article className={styles.addComment} >
 
                     <form className="form" onSubmit={addCommentHabdler}>
-                        <label htmlFor='textarea'>Add Your Comment Here:</label>
+                        <label htmlFor='textarea'><b>Add Your Comment Here:</b></label>
                         <textarea name="comment" placeholder='You can write your comment here ...' cols="30" rows="10"></textarea>
                         <input type="submit" className={styles.btn} value='Add comment' />
                     </form>
@@ -115,8 +138,11 @@ export default function RoomDetails() {
 
             </div>
 
-
-
+            {isDeleteModal
+                ? < DeleteModal isCancel={handleCancelDelete} isConfirm={confirmDeleteTrip} />
+                : null
+            }
+            
         </div>
 
 
