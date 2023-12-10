@@ -27,23 +27,23 @@ MIT License
  ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Capture.PNG)
 
 ## Login page
-![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Capture.PNG](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Login.PNG)
+![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Login.PNG)
 
 ## Create acount
- ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Capture.PNG](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Register.PNG)
+ ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Register.PNG)
 
 
 ## Add room
- ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Capture.PNG](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/AddRoom.PNG)
+ ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/AddRoom.PNG)
 
 ## Rooms catalog
- ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Capture.PNG](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Catalog.PNG)
+ ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Catalog.PNG)
 
 
 
 
 ## Room details owner
- ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Capture.PNG](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/DetailsOwner.PNG)
+ ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/DetailsOwner.PNG)
 
 ## Room details guest
  ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/DetailsNotOwner.PNG)
