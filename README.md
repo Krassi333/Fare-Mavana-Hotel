@@ -24,7 +24,7 @@ For server we use SoftUni Practice Server : https://github.com/softuni-practice-
 MIT License
 # Screenshots
 ## Home page
-![Uploading Capture.PNG…]()
+ ![My Image](https://github.com/Krassi333/Fare-Mavana-Hotel/blob/main/ScreenShots/Capture.PNG)
 
 ## Login page
 
