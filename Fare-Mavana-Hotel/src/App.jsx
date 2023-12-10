@@ -18,6 +18,7 @@ import ErrorBoundary from './components/ErrorBoudary/ErrorBoundary'
 import AuthGuard from './components/Guards/AuthGuard'
 import Login from './components/Login/Login'
 import Catalog from './components/Catalog/Catalog'
+import { NotFound } from './components/NotFound/NotFound'
 
 function App() {
 
@@ -40,6 +41,8 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route path="/rooms/:id/edit" element={<EditRoom />} />
             </Route>
+
+            <Route path="*" element={<NotFound />} />
           </Routes>
 
           <Footer />
